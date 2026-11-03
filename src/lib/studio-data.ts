@@ -10,14 +10,13 @@ export async function listStudioPosts(user?: Admin | null) {
   while (true) {
     const result = await payload.find({
       collection: 'social-posts',
-      overrideAccess: false,
-      user: user ?? undefined,
+      overrideAccess: true,
       draft: Boolean(user),
       where: user ? undefined : { _status: { equals: 'published' } },
       sort: ['sortOrder', '-createdAt'],
       limit: 100,
       page,
-      depth: 0,
+      depth: 1,
     })
     documents.push(...result.docs)
     if (!result.hasNextPage) break
@@ -33,14 +32,13 @@ export async function listStudioHighlights(user?: Admin | null) {
   while (true) {
     const result = await payload.find({
       collection: 'social-highlights',
-      overrideAccess: false,
-      user: user ?? undefined,
+      overrideAccess: true,
       draft: Boolean(user),
       where: user ? undefined : { _status: { equals: 'published' } },
       sort: ['sortOrder', 'createdAt'],
       limit: 100,
       page,
-      depth: 0,
+      depth: 1,
     })
     documents.push(...result.docs)
     if (!result.hasNextPage) break
@@ -49,16 +47,12 @@ export async function listStudioHighlights(user?: Admin | null) {
   return documents.map(toStudioHighlight)
 }
 
-export const getPublicStudio = unstable_cache(
-  async () => {
-    const payload = await getPayloadClient()
-    const [posts, profile, highlights] = await Promise.all([
-      listStudioPosts(),
-      payload.findGlobal({ slug: 'studio-profile', overrideAccess: false, depth: 1 }),
-      listStudioHighlights(),
-    ])
-    return { posts, brand: toStudioBrand(profile), highlights }
-  },
-  ['petasus-studio-v4'],
-  { tags: ['petasus-studio'] },
-)
+export async function getPublicStudio() {
+  const payload = await getPayloadClient()
+  const [posts, profile, highlights] = await Promise.all([
+    listStudioPosts(),
+    payload.findGlobal({ slug: 'studio-profile', overrideAccess: true, depth: 1 }),
+    listStudioHighlights(),
+  ])
+  return { posts, brand: toStudioBrand(profile), highlights }
+}

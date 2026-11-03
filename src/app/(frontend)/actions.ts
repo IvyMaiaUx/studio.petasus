@@ -26,7 +26,7 @@ export async function getStudioSession() {
     listStudioPosts(user),
     payload.findGlobal({
       slug: 'studio-profile',
-      overrideAccess: false,
+      overrideAccess: true,
       user: user ?? undefined,
       depth: 1,
     }),
