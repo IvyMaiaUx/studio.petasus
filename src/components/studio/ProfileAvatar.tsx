@@ -10,20 +10,18 @@ export function ProfileAvatar({
   className: string
   large?: boolean
 }) {
+  const avatarSrc = image?.url || '/assets/petasus-instagram-profile.png'
   return (
-    <span className={`${className}${image ? ' has-profile-image' : ''}`}>
-      {image ? (
-        <Image
-          src={image.url}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-          sizes={large ? '120px' : '32px'}
-          loading="eager"
-        />
-      ) : (
-        <>P{large && <span>®</span>}</>
-      )}
+    <span className={`${className} has-profile-image`}>
+      <Image
+        src={avatarSrc}
+        alt={image?.alt || 'Foto do perfil da Petasus'}
+        width={image?.width || (large ? 150 : 40)}
+        height={image?.height || (large ? 150 : 40)}
+        sizes={large ? '150px' : '40px'}
+        loading="eager"
+        style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%' }}
+      />
     </span>
   )
 }
