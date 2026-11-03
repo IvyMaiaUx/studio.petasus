@@ -11,8 +11,7 @@ export async function listStudioPosts(user?: Admin | null) {
     const result = await payload.find({
       collection: 'social-posts',
       overrideAccess: true,
-      draft: Boolean(user),
-      where: user ? undefined : { _status: { equals: 'published' } },
+      draft: true,
       sort: ['sortOrder', '-createdAt'],
       limit: 100,
       page,
@@ -33,8 +32,7 @@ export async function listStudioHighlights(user?: Admin | null) {
     const result = await payload.find({
       collection: 'social-highlights',
       overrideAccess: true,
-      draft: Boolean(user),
-      where: user ? undefined : { _status: { equals: 'published' } },
+      draft: true,
       sort: ['sortOrder', 'createdAt'],
       limit: 100,
       page,

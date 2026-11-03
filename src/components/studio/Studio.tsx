@@ -458,30 +458,27 @@ export default function Studio({
                     <Icon name="check" size={14} />
                     Posts, legendas e destaques guardados no acervo
                   </span>
-                  {!canEdit && <button onClick={refreshAccess}>Já entrei no painel</button>}
                 </div>
-                {canEdit && (
-                  <div className="archive-filters" aria-label="Etapa dos posts">
-                    {(
-                      [
-                        ['all', 'Todos'],
-                        ['draft', 'Rascunhos'],
-                        ['published', 'Prontos'],
-                      ] as const
-                    ).map(([key, name]) => (
-                      <button
-                        key={key}
-                        className={archiveFilter === key ? 'active' : ''}
-                        onClick={() => setArchiveFilter(key)}
-                      >
-                        {name}
-                        <span>
-                          {posts.filter((post) => key === 'all' || post.status === key).length}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <div className="archive-filters" aria-label="Etapa dos posts">
+                  {(
+                    [
+                      ['all', 'Todos'],
+                      ['draft', 'Rascunhos'],
+                      ['published', 'Prontos'],
+                    ] as const
+                  ).map(([key, name]) => (
+                    <button
+                      key={key}
+                      className={archiveFilter === key ? 'active' : ''}
+                      onClick={() => setArchiveFilter(key)}
+                    >
+                      {name}
+                      <span>
+                        {posts.filter((post) => key === 'all' || post.status === key).length}
+                      </span>
+                    </button>
+                  ))}
+                </div>
                 <div className="feed-toolbar">
                   <div className="feed-label">
                     <Icon name="instagram" size={17} />
@@ -785,28 +782,26 @@ export default function Studio({
 
           {page === 'highlights' && (
             <>
-              {canEdit && (
-                <div className="archive-filters" aria-label="Etapa dos destaques">
-                  {(
-                    [
-                      ['all', 'Todos'],
-                      ['draft', 'Rascunhos'],
-                      ['published', 'Prontos'],
-                    ] as const
-                  ).map(([key, name]) => (
-                    <button
-                      key={key}
-                      className={highlightFilter === key ? 'active' : ''}
-                      onClick={() => setHighlightFilter(key)}
-                    >
-                      {name}
-                      <span>
-                        {highlights.filter((item) => key === 'all' || item.status === key).length}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
+              <div className="archive-filters" aria-label="Etapa dos destaques">
+                {(
+                  [
+                    ['all', 'Todos'],
+                    ['draft', 'Rascunhos'],
+                    ['published', 'Prontos'],
+                  ] as const
+                ).map(([key, name]) => (
+                  <button
+                    key={key}
+                    className={highlightFilter === key ? 'active' : ''}
+                    onClick={() => setHighlightFilter(key)}
+                  >
+                    {name}
+                    <span>
+                      {highlights.filter((item) => key === 'all' || item.status === key).length}
+                    </span>
+                  </button>
+                ))}
+              </div>
               <HighlightsPanel
                 emblem={brand.emblem}
                 highlights={highlights.filter(
