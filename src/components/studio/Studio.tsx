@@ -343,22 +343,25 @@ export default function Studio({
       </aside>
       <div className="main-shell">
         <header className="topbar">
-          <div>
-            <span>Espaço da marca</span>
-            <span className="breadcrumb">/</span>
-            <strong>
-              {page === 'feed'
-                ? 'Prévia do feed'
-                : page === 'highlights'
-                  ? 'Destaques'
-                  : page === 'themes'
-                    ? 'Temas & ideias'
-                    : 'Identidade visual'}
-            </strong>
+          <div className="topbar-left">
+            <span className="mobile-brand-mark">petasus®</span>
+            <span className="topbar-crumbs">
+              <span>Espaço da marca</span>
+              <span className="breadcrumb">/</span>
+              <strong>
+                {page === 'feed'
+                  ? 'Prévia do feed'
+                  : page === 'highlights'
+                    ? 'Destaques'
+                    : page === 'themes'
+                      ? 'Temas & ideias'
+                      : 'Identidade visual'}
+              </strong>
+            </span>
           </div>
           <div className="topbar-right">
             <span className="draft-dot" />
-            {canEdit ? 'Edição conectada' : 'Acervo da Petasus'}
+            <span>{canEdit ? 'Edição conectada' : 'Acervo'}</span>
             <span className="top-avatar">P</span>
           </div>
         </header>
