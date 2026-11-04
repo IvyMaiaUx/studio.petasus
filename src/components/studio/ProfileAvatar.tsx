@@ -11,16 +11,40 @@ export function ProfileAvatar({
   large?: boolean
 }) {
   const avatarSrc = image?.url || '/assets/petasus-instagram-profile.png'
+  const size = large ? 116 : 32
   return (
-    <span className={`${className} has-profile-image`}>
+    <span
+      className={`${className} has-profile-image`}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: `${size}px`,
+        height: `${size}px`,
+        maxWidth: `${size}px`,
+        maxHeight: `${size}px`,
+        minWidth: `${size}px`,
+        minHeight: `${size}px`,
+        borderRadius: '50%',
+        overflow: 'hidden',
+        flexShrink: 0,
+        position: 'relative',
+      }}
+    >
       <Image
         src={avatarSrc}
         alt={image?.alt || 'Foto do perfil da Petasus'}
-        width={image?.width || (large ? 150 : 40)}
-        height={image?.height || (large ? 150 : 40)}
+        width={large ? 150 : 40}
+        height={large ? 150 : 40}
         sizes={large ? '150px' : '40px'}
         loading="eager"
-        style={{ objectFit: 'cover', width: '100%', height: '100%', borderRadius: '50%' }}
+        style={{
+          objectFit: 'cover',
+          width: '100%',
+          height: '100%',
+          borderRadius: '50%',
+          display: 'block',
+        }}
       />
     </span>
   )

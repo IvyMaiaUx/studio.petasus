@@ -287,8 +287,8 @@ main { padding: 35px 39px 0; max-width: 1550px; margin: auto; }
 .filters { margin-bottom: 20px; }
 .instagram-preview { background: #fff; border: 1px solid #e7e7e7; border-radius: 8px; overflow: hidden; color: #101010; }
 .insta-mobile-header { display: none; }
-.instagram-profile { padding: 35px 35px 22px; border: 0; border-radius: 0; gap: 38px; align-items: flex-start; }
-.profile-avatar { width: 116px; height: 116px; margin: 10px 5px 0; font-size: 74px; outline: 1px solid #ddd; outline-offset: 5px; background: #ffedad; }
+.instagram-profile { display: flex; padding: 35px 35px 22px; border: 0; border-radius: 0; gap: 38px; align-items: flex-start; }
+.profile-avatar { display: inline-flex; align-items: center; justify-content: center; width: 116px; height: 116px; min-width: 116px; min-height: 116px; max-width: 116px; max-height: 116px; flex-shrink: 0; margin: 10px 5px 0; font-size: 74px; outline: 1px solid #ddd; outline-offset: 5px; background: #ffedad; border-radius: 50%; overflow: hidden; position: relative; }
 .profile-avatar > span { font-size: 12px; margin: 0 0 42px 3px; }
 .profile-info { flex: 1; min-width: 0; }
 .profile-name { display: flex; gap: 14px; flex-wrap: wrap; font-size: 22px; font-weight: 500; margin: 0; }
@@ -423,7 +423,7 @@ main { padding: 35px 39px 0; max-width: 1550px; margin: auto; }
 
   /* Profile Header */
   .instagram-profile { display: grid !important; grid-template-columns: 78px 1fr !important; gap: 12px 14px !important; padding: 16px !important; align-items: center; }
-  .profile-avatar { grid-column: 1; grid-row: 1; width: 78px !important; height: 78px !important; font-size: 46px !important; margin: 0 !important; outline-offset: 3px; }
+  .profile-avatar { grid-column: 1; grid-row: 1; width: 78px !important; height: 78px !important; min-width: 78px !important; min-height: 78px !important; max-width: 78px !important; max-height: 78px !important; font-size: 46px !important; margin: 0 !important; outline-offset: 3px; border-radius: 50% !important; overflow: hidden !important; }
   .profile-avatar > span { display: none !important; }
   .profile-info { display: contents !important; }
 
