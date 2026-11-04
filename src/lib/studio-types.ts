@@ -119,8 +119,11 @@ export function toStudioBrand(profile: StudioProfile): StudioBrand {
           height: avatar.height || 1000,
         }
       : null,
-    emblem: image?.url
-      ? { url: image.url, alt: image.alt, width: image.width || 1184, height: image.height || 880 }
-      : null,
+    emblem: {
+      url: image?.url || '/assets/petasus-pegasus.jpg',
+      alt: image?.alt || 'Pégaso Petasus',
+      width: image?.width || 1184,
+      height: image?.height || 880,
+    },
   }
 }
